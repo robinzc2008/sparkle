@@ -105,6 +105,42 @@ var defaultCountryKeywords = {
   "BR": "巴西"
 };
 
+// 国旗 emoji 映射表（按标准化后的国家名来）
+var countryFlags = {
+  "香港": "🇭🇰",
+  "新加坡": "🇸🇬",
+  "台湾": "🇹🇼",
+  "日本": "🇯🇵",
+  "韩国": "🇰🇷",
+  "澳门": "🇲🇴",
+  "美国": "🇺🇸",
+  "加拿大": "🇨🇦",
+  "英国": "🇬🇧",
+  "德国": "🇩🇪",
+  "法国": "🇫🇷",
+  "意大利": "🇮🇹",
+  "挪威": "🇳🇴",
+  "澳洲": "🇦🇺",
+  "俄罗斯": "🇷🇺",
+  "乌克兰": "🇺🇦",
+  "土耳其": "🇹🇷",
+  "阿联酋": "🇦🇪",
+  "尼日利亚": "🇳🇬",
+  "菲律宾": "🇵🇭",
+  "泰国": "🇹🇭",
+  "越南": "🇻🇳",
+  "马来西亚": "🇲🇾",
+  "印度尼西亚": "🇮🇩",
+  "印度": "🇮🇳",
+  "阿根廷": "🇦🇷",
+  "巴西": "🇧🇷"
+};
+
+// 从国家名取 emoji，没有就返回空串
+function getCountryFlag(country) {
+  return countryFlags[country] || "";
+}
+
 // 合并参数里的 countryKeywords 和默认值
 var countryKeywords = cfg.countryKeywords || defaultCountryKeywords;
 
@@ -220,6 +256,12 @@ for (var i = 0; i < proxies.length; i++) {
   var country = detectCountry(oldName);
   if (!country) continue; // 没匹配到国家就不动
 
+  // 为国家名加上国旗前缀
+  var flag = getCountryFlag(country);
+  if (flag) {
+    country = flag + " " + country;
+  }
+
   var lineType = isIEPLNode(oldName) ? ieplName : relayName;
   var key = country + "-" + lineType;
 
@@ -232,4 +274,3 @@ for (var i = 0; i < proxies.length; i++) {
 }
 
 return proxies;
- 
