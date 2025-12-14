@@ -1,4 +1,5 @@
-# ========== 全局设置（可按需删减） ==========
+# 适用于Sparkle的windows客户端，在sub-store整合了机场节点之后的覆写规则。
+# ========== 全局设置 ==========
 port: 7890
 socks-port: 7891
 redir-port: 7892
@@ -66,13 +67,13 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
 
-# ========== 追加基础节点 ==========
-append-proxies:
+# ========== 追加基础节点（Clash Party 写法） ==========
++proxies:
   - { name: 直连, type: direct }
   - { name: 拒绝, type: reject }
 
-# ========== 追加策略组（全部） ==========
-append-proxy-groups:
+# ========== 追加策略组（全部，Clash Party 写法） ==========
++proxy-groups:
   - {name: 🚀 默认代理, type: select, proxies: [直连, 👆 手动选择节点, 🚊 IEPL专线, ♻️ 香港-自动, ♻️ 日本-自动, ♻️ 台湾-自动, ♻️ 新加坡-自动, ♻️ 韩国-自动, ♻️ 美国-自动, ♻️ 俄罗斯-自动, ♻️ 台日新韩澳-自动, ♻️ 港台日新韩澳-自动, ♻️ 东南亚-自动, ♻️ 澳洲-自动, ♻️ 欧洲-自动, ♻️ 中东-自动, ♻️ 拉丁美洲-自动, 🌐 所有-自动]}
   - {name: 🕹️ Steam, type: select, proxies: [直连, 👆 手动选择节点, 🚊 IEPL专线, ♻️ 香港-自动, ♻️ 日本-自动, ♻️ 台湾-自动, ♻️ 新加坡-自动, ♻️ 韩国-自动, ♻️ 美国-自动, ♻️ 俄罗斯-自动, ♻️ 台日新韩澳-自动, ♻️ 港台日新韩澳-自动, ♻️ 东南亚-自动, ♻️ 澳洲-自动, ♻️ 欧洲-自动, ♻️ 中东-自动, ♻️ 拉丁美洲-自动, 🌐 所有-自动]}
   - {name: 📹 YouTube, type: select, proxies: [直连, 👆 手动选择节点, 🚊 IEPL专线, ♻️ 香港-自动, ♻️ 日本-自动, ♻️ 台湾-自动, ♻️ 新加坡-自动, ♻️ 韩国-自动, ♻️ 美国-自动, ♻️ 俄罗斯-自动, ♻️ 台日新韩澳-自动, ♻️ 港台日新韩澳-自动, ♻️ 东南亚-自动, ♻️ 澳洲-自动, ♻️ 欧洲-自动, ♻️ 中东-自动, ♻️ 拉丁美洲-自动, 🌐 所有-自动]}
@@ -91,7 +92,7 @@ append-proxy-groups:
   - {name: 👆 手动选择节点, type: select, include-all: true}
   - {name: 🚊 IEPL专线, type: select, include-all: true, filter: "IEPL"}
 
-  # 各地区自动（基于你现在的命名）
+  # 各地区自动
   - {name: ♻️ 香港-自动,        type: url-test, include-all: true, tolerance: 20, interval: 60,  filter: "香港-"}
   - {name: ♻️ 日本-自动,        type: url-test, include-all: true, tolerance: 20, interval: 60,  filter: "日本-"}
   - {name: ♻️ 台湾-自动,        type: url-test, include-all: true, tolerance: 20, interval: 60,  filter: "台湾-"}
